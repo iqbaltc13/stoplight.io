@@ -44,5 +44,13 @@ class User extends Authenticatable
     public function setPasswordAttribute($password){
         $this->attributes['password'] = bcrypt($password);
     }
+    
+
+
+    public function rekening(){
+		
+		return $this->hasOne('App\Models\Rekening', 'user_id','id');
+	
+	}
 
 }

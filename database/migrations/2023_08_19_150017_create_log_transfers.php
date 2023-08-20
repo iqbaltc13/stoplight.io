@@ -14,8 +14,16 @@ class CreateLogTransfers extends Migration
     public function up()
     {
         Schema::create('log_transfers', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements('id');
+            $table->bigInteger('from_rekening_id')->nullable();
+            $table->bigInteger('to_rekening_id')->nullable();
+            $table->bigInteger('amount')->nullable()->default(0);
+            $table->bigInteger('created_by_id')->nullable()->default(0);
+            $table->bigInteger('updated_by_id')->nullable();
+            $table->bigInteger('deleted_by_id')->nullable();
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('updated_at')->nullable();
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 
