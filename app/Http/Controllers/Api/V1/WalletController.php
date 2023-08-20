@@ -29,7 +29,7 @@ class WalletController extends Controller
             return response()->json('Invalid topup amount', 400);
         } 
         try { 
-            $data =  Rekening::with([])->->whereNull('deleted_at')->where('user_id',Auth::id())->increment('amount', $topUpAmount);
+            $data =  Rekening::with([])->whereNull('deleted_at')->where('user_id',Auth::id())->increment('amount', $topUpAmount);
           } catch(QueryException $ex){ 
             
             // Note any method of class PDOException can be called on $ex.
@@ -40,7 +40,7 @@ class WalletController extends Controller
     }
     public function balanceRead(Request $request){
         try { 
-            $data =  Rekening::with([])->->whereNull('deleted_at')->where('user_id',Auth::id())->first();
+            $data =  Rekening::with([])->whereNull('deleted_at')->where('user_id',Auth::id())->first();
           } catch(QueryException $ex){ 
             
             // Note any method of class PDOException can be called on $ex.
@@ -75,10 +75,10 @@ class WalletController extends Controller
             foreach ($dataTransfers as $key => $value) {
                 $result = [];
                 
-                $result['username'] = $value[];
+                $result['username'] = $value;
                 $result['transacted_value'] = -1 * $value->amount;
                 
-                array_push($results,$result)
+                array_push($results,$result);
             }
         }
        
@@ -113,7 +113,7 @@ class WalletController extends Controller
                     $result['amount'] =  $value->amount;
 
                 }
-                array_push($results,$result)
+                array_push($results,$result);
             }
         }
        
